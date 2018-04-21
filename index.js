@@ -35,7 +35,7 @@ app.options('/*', function(req, res, next) {
 app.use(bodyParser.urlencoded({ extended: true }))
 app.use(bodyParser.json())
 
-const port = process.env.PORT || 3000
+const port = process.env.PORT || 3003
 
 app.use('/api', router)
 
