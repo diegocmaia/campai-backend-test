@@ -9,6 +9,13 @@ test('Checking empty response', async t => {
   t.deepEqual(response.body, {})
 })
 
+test('Checking invalid request', async t => {
+  const response = await request(app).get('/api/search').query({text: { foo: 'foo' }})
+
+  t.is(response.status, 400)
+  t.deepEqual(response.body, { error: 'Text should be a string' })
+})
+
 test('Checking Contacts => Organization', async t => {
   const text = 'OSC Bremerhaven'
   const response = await request(app).get('/api/search').query({text})

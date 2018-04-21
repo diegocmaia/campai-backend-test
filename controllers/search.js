@@ -11,15 +11,19 @@ export async function searchDataByInput (req, res) {
   let result = {}
 
   try {
-    if(!_.isEmpty(text)) {
-      const orgs = await organizationsServices.filterOrgsByInput(text)
-      const contacts = await contactsServices.filterContactsByInput(text)
-      const groups = await contactGroupsServices.filterContactGroupsByInput(text)
-      result = helpers.formatSearchResult({ orgs, contacts, groups })
+    if(text && typeof text !== 'string') {
+      res.status(400).send({error: 'Text should be a string'})
+    } else {
+      if(!_.isEmpty(text)) {
+        const orgs = await organizationsServices.filterOrgsByInput(text)
+        const contacts = await contactsServices.filterContactsByInput(text)
+        const groups = await contactGroupsServices.filterContactGroupsByInput(text)
+        result = helpers.formatSearchResult({ orgs, contacts, groups })
+      }
+      res.json(result)
     }
-    res.json(result)
   } catch (err) {
     console.log(err)
-    res.throw(500, err)
+    res.status(500).send({error: err})
   }
 }
