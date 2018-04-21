@@ -1,6 +1,6 @@
 import test from 'ava'
 import request from 'supertest'
-import app from '../index.js'
+import app from '../../server.js'
 
 test('Checking empty response', async t => {
   const response = await request(app).get('/api/search').query({text: ''})

@@ -2,12 +2,13 @@
   "name": "campai-backend-test",
   "version": "1.0.0",
   "description": "Backend challenge for campai role as fullstack developer",
-  "main": "index.js",
+  "main": "server.js",
   "scripts": {
-    "start": "babel-node index.js",
-    "nodemon": "nodemon --exec babel-node index.js",
-    "test": "NODE_ENV=local ava --verbose",
-    "fake-data": "mongorestore mongo/campai/ --db campai"
+    "start": "babel-node server.js",
+    "nodemon": "nodemon --exec babel-node server.js",
+    "test": "NODE_ENV=local ava test/integration/*.js --verbose",
+    "fake-data": "mongorestore mongo/campai/ --db campai",
+    "artillery": "artillery run test/performance/search.json -e local"
   },
   "repository": {
     "type": "git",
@@ -20,6 +21,7 @@
   },
   "homepage": "https://github.com/midyan/campai-backend-test#readme",
   "devDependencies": {
+    "artillery": "^1.6.0-15",
     "ava": "^0.25.0"
   },
   "dependencies": {

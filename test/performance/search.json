@@ -1,0 +1,25 @@
+{
+  "config": {
+    "environments":{
+      "local": {
+        "target": "http://localhost:3003/api",
+        "phases": [
+          { "duration": 30, "arrivalRate": 10, "name": "Warm-up" },
+          { "duration": 60, "arrivalRate": 30, "name": "Sustained load" }
+        ]
+      }
+    }
+  },
+  "scenarios": [
+    {
+      "name": "Search",
+      "flow": [
+        {
+          "get": {
+            "url": "/search?text=la"
+          }
+        }
+      ]
+    }
+  ]
+}
