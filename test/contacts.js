@@ -1,5 +1,19 @@
 import test from 'ava'
+import request from 'supertest'
+import app from '../index.js'
 
-test('foo', t => {
-  t.pass()
+test('Checking empty response', async t => {
+  const response = await request(app).get('/api/search').query({text: ''})
+
+  t.is(response.status, 200)
+  t.deepEqual(response.body, {})
+})
+
+test('Checking Contacts => Organization', async t => {
+  const text = 'OSC Bremerhaven'
+  const response = await request(app).get('/api/search').query({text})
+
+  t.is(response.status, 200)
+  // Assuming that at least one contact belongs to a organization
+  t.true(response.body.contacts.length >= 1)
 })
