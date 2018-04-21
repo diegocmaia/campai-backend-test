@@ -6,7 +6,7 @@ test('Invalid endpoint', async t => {
   const response = await request(app).get('/api/searchs').query({text: ''})
 
   t.is(response.status, 404)
-  t.true(response.notFound)
+  t.is(response.error.text, 'Not Found')
 })
 
 test('Checking empty response', async t => {
