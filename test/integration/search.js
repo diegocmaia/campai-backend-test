@@ -2,6 +2,13 @@ import test from 'ava'
 import request from 'supertest'
 import app from '../../server.js'
 
+test('Invalid endpoint', async t => {
+  const response = await request(app).get('/api/searchs').query({text: ''})
+
+  t.is(response.status, 404)
+  t.true(response.notFound)
+})
+
 test('Checking empty response', async t => {
   const response = await request(app).get('/api/search').query({text: ''})
 
