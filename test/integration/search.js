@@ -36,5 +36,15 @@ test('Checking Contacts => Organization', async t => {
 
   t.is(response.status, 200)
   // Assuming that at least one contact belongs to a organization
-  t.true(response.body.contacts.length >= 1)
+  console.log('MAIA' + response.body.contacts.data.length)
+  t.true(response.body.contacts.data.length >= 1)
+})
+
+test('Testing limit', async t => {
+  const text = 'a'
+  const response = await request(app).get('/api/search').query({text, limit : 10})
+
+  t.is(response.status, 200)
+  // Assuming that there is more than five items returned when searching for 'a'
+  t.true(response.body.contacts.data.length <= 10)
 })

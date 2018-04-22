@@ -1,34 +1,43 @@
 import _ from 'lodash'
 
-function formatSearchResult ({ orgs, contacts, groups }) {
+function formatSearchResult ({ orgs, contacts, groups, limit = 10 }) {
   let result = {}
 
-  result.contacts = formatContacts(contacts)
-  result.groups = formatGropus(groups)
-  result.orgs = formatOrgs(orgs)
+  result.contacts = formatContacts({contacts, limit})
+  result.groups = formatGropus({groups, limit})
+  result.orgs = formatOrgs({orgs, limit})
 
   return result
 }
 
-function formatContacts (contacts) {
-  contacts = _.map(contacts, c => {
+function formatContacts ({ contacts, limit }) {
+  let result = {}
+  result.info = { total: contacts.length, limit }
+  contacts = _.take(contacts, limit)
+  result.data = _.map(contacts, c => {
     return { full_name: c.first_name + ' ' + c.last_name, avatar: c.avatar, city: c.address.city, org_name: c.org.name }
   })
-  return contacts
+  return result
 }
 
-function formatGropus (groups) {
-  groups = _.map(groups, g => {
+function formatGropus ({ groups, limit }) {
+  let result = {}
+  result.info = { total: groups.length, limit }
+  groups = _.take(groups, limit)
+  result.data = _.map(groups, g => {
     return { name: g.name,  city: g.address.city }
   })
-  return groups
+  return result
 }
 
-function formatOrgs (orgs) {
-  orgs = _.map(orgs, o => {
+function formatOrgs ({ orgs, limit }) {
+  let result = {}
+  result.info = { total: orgs.length, limit }
+  orgs = _.take(orgs, limit)
+  result.data = _.map(orgs, o => {
     return { name: o.name,  city: o.city, type: o.type }
   })
-  return orgs
+  return result
 }
 
 export default { formatSearchResult }

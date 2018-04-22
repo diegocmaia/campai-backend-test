@@ -6,7 +6,8 @@
   "scripts": {
     "start": "babel-node server.js",
     "nodemon": "nodemon --exec babel-node server.js",
-    "test": "NODE_ENV=local ava test/integration/*.js --verbose",
+    "test:integration": "NODE_ENV=local ava test/integration/*.js --verbose",
+    "test:unit": "NODE_ENV=local ava test/unit/*.js --verbose",
     "fake-data": "mongorestore mongo/campai/ --db campai",
     "artillery": "artillery run test/performance/search.json -e local"
   },
