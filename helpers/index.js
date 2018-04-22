@@ -1,6 +1,6 @@
 import _ from 'lodash'
 
-function formatSearchResult ({ orgs, contacts, groups, limit = 10 }) {
+function formatSearchResult ({ orgs, contacts, groups, limit }) {
   let result = {}
 
   result.contacts = formatContacts({contacts, limit})
