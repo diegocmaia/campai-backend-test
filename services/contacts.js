@@ -6,6 +6,7 @@ function filterContactsByInput (inputText) {
     const regex = new RegExp(inputText, 'i')
     let result = []
     Contacts.find()
+    .sort({ first_name: 1 })
     .populate('org')
     .exec((err, contacts) => {
       if (err) reject(err)

@@ -36,7 +36,6 @@ test('Checking Contacts => Organization', async t => {
 
   t.is(response.status, 200)
   // Assuming that at least one contact belongs to a organization
-  console.log('MAIA' + response.body.contacts.data.length)
   t.true(response.body.contacts.data.length >= 1)
   // Default limit
   t.true(response.body.contacts.data.length <= 10)
