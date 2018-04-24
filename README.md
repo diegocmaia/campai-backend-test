@@ -71,8 +71,30 @@ npm start
 
 Unit tests are essential for this challenge. You have to use `ava` as your test runner. You can check the documentation [here](https://github.com/avajs/ava).
 
-To run the tests, simply do
+To run the unit tests:
 
 ```
-npm run test
+npm run test:unit
+```
+
+To run the integration tests:
+
+```
+npm run test:integration
+```
+
+To run the performance tests (with [Artillery](https://artillery.io/)):
+
+```
+npm run test:performance
+```
+
+## Documentation
+
+You can access the API documentation on http://localhost:3003/docs
+
+To generate the docs, run:
+
+```
+npm run docs
 ```

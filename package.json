@@ -6,10 +6,10 @@
   "scripts": {
     "start": "babel-node server.js",
     "nodemon": "nodemon --exec babel-node server.js",
-    "test:integration": "NODE_ENV=local ava test/integration/*.js --verbose",
     "test:unit": "NODE_ENV=local ava test/unit/**/*.js --verbose",
+    "test:integration": "NODE_ENV=local ava test/integration/*.js --verbose",
+    "test:performance": "artillery run test/performance/search.json -e local",
     "fake-data": "mongorestore mongo/campai/ --db campai",
-    "artillery": "artillery run test/performance/search.json -e local",
     "docs": "apidoc -i controllers/ -o apidocs/"
   },
   "repository": {
