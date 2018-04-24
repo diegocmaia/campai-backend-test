@@ -7,6 +7,7 @@ const router = express.Router()
 
 router.use(morgan('dev'))
 
+// Search routes
 router.get('/search', searchController.searchDataByInput)
 
 export default router

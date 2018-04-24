@@ -1,10 +1,10 @@
 import test from 'ava'
-import db from './util/dbConnection'
+import db from '../util/_dbConnection'
 
-import contactsServices from '../../services/contacts'
+import contactsServices from '../../../services/contacts'
 
 test('Testing search\'s result', async t => {
-  const result = await contactsServices.filterContactsByInput('la')
+  const result = await contactsServices.filterContactsByInput('a')
   t.notDeepEqual(result, [])
 })
 
